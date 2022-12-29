@@ -1,10 +1,4 @@
-// GLOBAL (must be saved locally, so that refreshing the page won't delete data)
-
-let Nights = 1;
-let Deaths = 0;
-
-// FOR THE NIGHT ONLY
-
+let startingFog = 1;
 let Sec = 0;
 let ErrorText = "";
 let DotState = 0;
@@ -16,7 +10,8 @@ let Player = {
     tasking: false,
     hiding: false,
     tasks: [],
-    numberOfTasks: 5,
+    numberOfTasks: 0,
+    tasksWeek: [2, 3, 5, 6, 8, 10]
 }
 
 // Tools :
@@ -31,7 +26,7 @@ let Battery = 100.0;
 let SabotageState = 0;
 let Systems = {
     'cam': { name: 'Camera', working: true, square: '63', time: 6000, usage: 0 },
-    'vent': { name: 'Ventilation', working: true, square: '26', time: 9000, usage: 0 },
+    'vent': { name: 'Ventilation', working: true, square: '26', time: 5000, usage: 0 },
     'noise': { name: 'Audio', working: true, square: '00', time: 7000, usage: 0 },
     'light': { name: 'Light', working: true, square: '43', time: 4000, usage: 0 },
 };
@@ -43,7 +38,7 @@ const Tasks = [
     // Parts and services
     [{ square: '00', step: 1, time: 2, content: "Store the material" }],
     [{ square: '01', step: 1, time: 4, content: "Clean the floor" }],
-    [{ square: '11', step: 1, time: 5, content: "Clean the work surface" }],
+    [{ square: '10', step: 1, time: 5, content: "Clean the work surface" }],
 
     // Main stage
     [{ square: '02', step: 1, time: 5, content: "Tune Bonnie's guitar" }],
@@ -60,10 +55,10 @@ const Tasks = [
 
     // Dining room
     [{ square: '11', step: 1, time: 2, content: "Empty the trash can" }, { square: '26', step: 2, time: 2, content: "Dispose of waste" }],
-    [{ square: '12', step: 1, time: 3, content: "Tidy up the table" }, { square: '13', step: 2, time: 3, content: "Tidy up the table" }],
-    [{ square: '14', step: 1, time: 3, content: "Tidy up the table" }, { square: '15', step: 2, time: 3, content: "Tidy up the table" }],
-    [{ square: '21', step: 1, time: 2, content: "Empty the trash can" }, { square: '26', step: 2, time: 2, content: "Dispose of waste" }],
-    [{ square: '22', step: 1, time: 3, content: "Tidy up the table" }, { square: '23', step: 2, time: 3, content: "Tidy up the table" }],
+    [{ square: '12', step: 1, time: 5, content: "Clean the curtains" }, { square: '14', step: 2, time: 5, content: "Clean the curtains" }],
+    [{ square: '15', step: 1, time: 2, content: "Empty the trash can" }, { square: '26', step: 2, time: 2, content: "Dispose of waste" }],
+    [{ square: '13', step: 1, time: 3, content: "Tidy up the table" }, { square: '23', step: 2, time: 3, content: "Tidy up the table" }],
+    [{ square: '21', step: 1, time: 3, content: "Tidy up the table" }, { square: '22', step: 2, time: 3, content: "Tidy up the table" }],
     [{ square: '24', step: 1, time: 3, content: "Tidy up the table" }, { square: '25', step: 2, time: 3, content: "Tidy up the table" }],
 
     // Entrance
@@ -102,7 +97,6 @@ const Tasks = [
     // Party Room
     [{ square: '55', step: 1, time: 4, content: "Clean the dance floor" }, { square: '56', step: 2, time: 4, content: "Clean the dance floor" }],
     [{ square: '65', step: 1, time: 4, content: "Clean the board" }],
-    [{ square: '66', step: 1, time: 5, content: "Clean the curtains" }],
 
     // Server Room
     [{ square: '63', step: 1, time: 8, content: "Restart the servers" }],

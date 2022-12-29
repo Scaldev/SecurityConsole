@@ -36,8 +36,8 @@ function addPowerUsage() {
   return usageLevel;
 }
 function whoIsOn(square) {
-  for (let n in BotsMoving) {
-    if (BotsMoving[n].square == square) return BotsMoving[n].emoji;
+  for (let n in Bots) {
+    if (Bots[n].square == square) return Bots[n].emoji;
   }
   return '•';
 }

@@ -24,10 +24,11 @@ function drawCanvas(images) {
   // Clear :
 
   ctx.clearRect(0, 0, 1500, 800);
-  ctx.textAlign = 'center';
-  ctx.fillStyle = `rgba(255, 255, 255, ${Player.hiding ? '0.5' : '1'})`;
 
   // RIP TEXT  #####################################################################################################################################################
+
+  ctx.textAlign = 'center';
+  ctx.fillStyle = `rgba(255, 255, 255, ${Player.hiding ? '0.5' : '1'})`;
 
   let botOnPlayer = whoIsOn(Player.square);
   if (botOnPlayer !== '•' && !Player.hiding) {
@@ -44,11 +45,16 @@ function drawCanvas(images) {
     for (let intName in Intervals) clearInterval(Intervals[intName]);
 
     ctx.font = `100px Courier`;
-    ctx.fillText("Your job is done.", 750, 200);
-    ctx.fillText("See you tomorrow.", 750, 325);
+    ctx.fillText("Your job is done.", 750, 150);
+    ctx.fillText("See you tomorrow.", 750, 250);
     ctx.font = `16px Courier`;
-    ctx.fillText("(Have a good night)", 750, 400);
+    ctx.fillText("(Have a good night)", 750, 300);
     returnError(`Your job is done.`, 0);
+    newGameOrMenuButton.value = "Back to Menu";
+    newGameOrMenuButton.style.display = "block";
+    continueButton.style.display = "block";
+
+    localStorage.setItem('Night', parseInt(localStorage.getItem('Night')) + 1);
 
   } else {
 
@@ -224,6 +230,15 @@ function drawCanvas(images) {
       ctx.textAlign = 'left';
       ctx.fillStyle = "red";
       fillTextMultiLine(ctx, text, 500, 510);
+    }
+
+    // STARTING #####################################################################################################################################################
+
+    if (startingFog > 0) {
+      ctx.fillStyle = `rgba(0, 0, 0, ${startingFog})`;
+      ctx.rect(0, 0, 1500, 800);
+      ctx.fill();
+      startingFog -= 0.01;
     }
 
   }

@@ -1,4 +1,27 @@
-function start(night) {
+function start() {
+
+  document.getElementById("textInput").style.display = "block";
+
+  // RESTART :
+
+  startingFog = 1;
+  Sec = 0;
+  ErrorText = "";
+  DotState = 0;
+  LightState = 0;
+  Player = { square: "43", alive: true, tasking: false, hiding: false, tasks: [], numberOfTasks: 0, tasksWeek: [2, 3, 5, 7, 9] };
+  Noise = "";
+  NoiseState = 0;
+  Cam = "";
+  Battery = 100.0;
+  SabotageState = 0;
+  Intervals = {};
+  Systems = {
+    'cam': { name: 'Camera', working: true, square: '63', time: 6000, usage: 0 },
+    'vent': { name: 'Ventilation', working: true, square: '26', time: 5000, usage: 0 },
+    'noise': { name: 'Audio', working: true, square: '00', time: 7000, usage: 0 },
+    'light': { name: 'Light', working: true, square: '43', time: 4000, usage: 0 },
+  };
 
   // ROUTING MAP :
 
@@ -23,11 +46,22 @@ function start(night) {
   }
 
   // BOTS :
-  for (let n in BotsMoving) {
-    Intervals[BotsMoving[n].name] = setInterval(() => { move(BotsMoving[n]); }, BotsMoving[n].interval * 1000);
+
+  for (let n in Bots) {
+    Intervals[Bots[n].name] = setInterval(() => { move(Bots[n]); }, Bots[n].interval * 1000);
+    Bots[n].level = Bots[n].levels[parseInt(localStorage.getItem('Night')) - 1]
   };
 
+  Freddy.square = "04";
+  Bonnie.square = "03";
+  Chica.square = "05";
+  Foxy.square = "60";
+  Mangle.square = "66";
+
   // TASKS :
+
+  Player.numberOfTasks = Player.tasksWeek[parseInt(localStorage.getItem('Night')) - 1]
+
   for (let i = 0; i < Player.numberOfTasks; i++) {
     newTaskIndex = Math.floor(Math.random() * Tasks.length);
     newTask = Tasks[newTaskIndex];
@@ -109,11 +143,6 @@ function start(night) {
         Systems['vent'].working = false;
       }
     }
-
-    for (let sys in Systems) {
-      console.log(sys, " : usage of ", Systems[sys].usage)
-    }
-    console.log("--------------")
 
     screen();
 

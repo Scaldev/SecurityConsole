@@ -1,27 +1,48 @@
-const button = document.getElementById('btn_newgame');
 const canvas = document.getElementById("myCanvas");
-const textInput = document.getElementById("textInput");
-
-const elementsId = ['btn_newgame', 'btn_continue'];
-
 const ctx = canvas.getContext("2d");
-ctx.font = "12px Courier";
+
+console.log(localStorage);
+
+const elementsId = ['newGameOrMenuButton', 'continueButton'];
+
+ctx.font = "150px Courier";
 ctx.fillStyle = "white";
+ctx.textAlign = 'center';
+ctx.fillText(`Security Console`, 750, 200);
 
-button.addEventListener('click', function handleClick() {
+function startNight() {
 
-  for (let i in elementsId) {
-    document.getElementById(elementsId[i]).remove();
-  }
+  newGameOrMenuButton.style.display = "none";
+  continueButton.style.display = "none";
 
-  start(0);
+  ctx.font = "200px Courier";
+  ctx.fillStyle = "white";
+  ctx.textAlign = 'center';
+  ctx.clearRect(0, 0, 1500, 800);
+  ctx.fillText(`Night ${localStorage.getItem('Night')}`, 750, 300);
+
+  setTimeout(() => {
+    start();
+  }, 4000);
+
+}
+
+let newGameOrMenuButton = document.getElementById('newGameOrMenuButton');
+newGameOrMenuButton.addEventListener('click', function handleClick() {
+  localStorage.setItem("Night", 1);
+  startNight();
 });
 
-textInput.addEventListener('keydown', (e) => {
-  if (e.key == 'Enter') {
-    command(textInput.value);
-    textInput.value = "";
-  }
-})
+let continueButton = document.getElementById('continueButton');
+continueButton.addEventListener('click', function handleClick() {
+  startNight();
+});
 
-console.log(Freddy);
+let commandInput = document.getElementById("textInput");
+commandInput.style.display = "none";
+commandInput.addEventListener('keydown', (e) => {
+  if (e.key == 'Enter') {
+    command(commandInput.value);
+    commandInput.value = "";
+  }
+});
