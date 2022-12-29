@@ -54,29 +54,35 @@ function command(input) {
 
     case 'task':
 
-      if (Cam !== "") Cam = "";
-      if (Player.hiding) Player.hiding = false;
+      if (Player.square !== Player.tasks[0][0].square) {
+        returnError("The task to do is not here.", 1000);
+      } else {
 
-      let textInputTask = document.getElementById("textInput");
-      textInputTask.disabled = true;
-      textInputTask.placeholder = `Doing the task : please wait ${Player.tasks[0][0].time} seconds.`;
-      textInputTask.style.border = '2px solid #696969';
-      textInputTask.style.backgroundImage = "url('imgs/prompt/prompt_gray.png')";
+        if (Cam !== "") Cam = "";
+        if (Player.hiding) Player.hiding = false;
 
-      Player.tasking = true;
+        let textInputTask = document.getElementById("textInput");
+        textInputTask.disabled = true;
+        textInputTask.placeholder = `Doing the task : please wait ${Player.tasks[0][0].time} seconds.`;
+        textInputTask.style.border = '2px solid #696969';
+        textInputTask.style.backgroundImage = "url('imgs/prompt/prompt_gray.png')";
 
-      setTimeout(() => {
+        Player.tasking = true;
 
-        if (Player.alive) {
-          Player.tasking = false;
-          normalTextInput(textInputTask, "And voilà! The task is done.");
-          Player.tasks[0].shift();
-          if (Player.tasks[0].length === 0) {
-            Player.tasks.shift();
+        setTimeout(() => {
+
+          if (Player.alive) {
+            Player.tasking = false;
+            normalTextInput(textInputTask, "And voilà! The task is done.");
+            Player.tasks[0].shift();
+            if (Player.tasks[0].length === 0) {
+              Player.tasks.shift();
+            }
           }
-        }
 
-      }, Player.tasks[0][0].time * 1000);
+        }, Player.tasks[0][0].time * 1000);
+
+      }
 
       break;
 

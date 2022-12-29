@@ -1,7 +1,5 @@
 function start(night) {
 
-  console.log(`NIGHT ${night}`);
-
   // ROUTING MAP :
 
   for (let square in Squares) {
@@ -23,8 +21,6 @@ function start(night) {
       }
     }
   }
-
-  console.log(Squares);
 
   // BOTS :
   for (let n in BotsMoving) {

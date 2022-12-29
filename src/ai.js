@@ -2,7 +2,7 @@
 
 function move(bot) {
 
-  foxyBypass = bot.name == "Foxy" && bot.state == 6;
+  let foxyBypass = bot.name == "Foxy" && bot.state >= 6;
 
   // ROLL A DICE
 
