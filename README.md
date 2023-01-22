@@ -1,5 +1,5 @@
 # SecurityConsole
-A Five Nights at Freddy's-like game, where you have to enter commands to keep an eye on the animatronics moving around the building.
+A Five Nights at Freddy's-like game, where you have to enter commands to move, do tasks, use cams, hide and more!
 
 ![image](https://user-images.githubusercontent.com/96988311/213940941-1eb50a86-0c18-46ab-a950-a1b1045b0172.png)
 
