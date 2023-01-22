@@ -3,12 +3,6 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-    <input id="textInput" type="text" placeholder="enter a command here" class="search" />
 
     <div></div>
 
@@ -16,23 +10,38 @@
         Your browser does not support the canvas element.
     </canvas>
 
-    <div>
-        <button class="button" id="newGameOrMenuButton">New Game</button>
-        <button class="button" id="continueButton">Continue</button>
+    <input id="textInput" type="text" placeholder="enter a command here" class="search" />
+
+    <div style="position:absolute; left:80px; top:400px;">
+        <button class="button" id="button1">New Game</button>
     </div>
+
+    <div style="position:absolute; left:80px; top:550px;">
+        <button class="button" id="button2">Continue</button>
+    </div>
+
+    <link rel="stylesheet" href="style.css">
 
     <script src="data/bots.js"></script>
     <script src="data/player.js"></script>
     <script src="data/map.js"></script>
+    <script src="data/calls.js"></script>
 
-    <script src="src/game.js"></script>
+    <script src="src/game_start.js"></script>
+    <script src="src/game_frame.js"></script>
+    <script src="src/game_end.js"></script>
+
+    <script src="src/screen.js"></script>
+
     <script src="src/utility.js"></script>
     <script src="src/ai.js"></script>
-    <script src="src/screen.js"></script>
     <script src="src/command.js"></script>
 
     <script src='./index.js'> </script>
 
+</head>
+
+<body>
 </body>
 
 </html>

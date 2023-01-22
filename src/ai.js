@@ -6,7 +6,7 @@ function move(bot) {
 
   // ROLL A DICE
 
-  if (randomNumber(0, 20) <= bot.level || foxyBypass) {
+  if (randomNumber(1, 20) <= bot.level || foxyBypass || bot.square == Player.square) {
 
     if (bot.name == "Foxy") {
 
@@ -22,7 +22,8 @@ function move(bot) {
         if (bot.square === "60") bot.state = 0;
       }
 
-    } else { // move
+    } else { // Freddy, Bonnie, Chica, Mangle:
+
       let squareOptions = [];
       let neighbors = Squares[bot.square].neighbors;
       for (let n in neighbors) {
@@ -39,7 +40,5 @@ function move(bot) {
     }
 
   }
-
-  screen();
 
 }

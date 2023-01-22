@@ -1,19 +1,19 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
-console.log(localStorage);
-
-const elementsId = ['newGameOrMenuButton', 'continueButton'];
+// TITLE #####################################################################
 
 ctx.font = "150px Courier";
 ctx.fillStyle = "white";
 ctx.textAlign = 'center';
-ctx.fillText(`Security Console`, 750, 200);
+ctx.fillText(`Security Console`, 750, 150);
+
+// START THE GAME ############################################################
 
 function startNight() {
 
-  newGameOrMenuButton.style.display = "none";
-  continueButton.style.display = "none";
+  button1.style.display = "none";
+  button2.style.display = "none";
 
   ctx.font = "200px Courier";
   ctx.fillStyle = "white";
@@ -21,20 +21,40 @@ function startNight() {
   ctx.clearRect(0, 0, 1500, 800);
   ctx.fillText(`Night ${localStorage.getItem('Night')}`, 750, 300);
 
+  function reloadFile(file_name) {
+    let head = document.getElementsByTagName('head')[0];
+    let script = document.createElement('script');
+    script.src = `${file_name}.js`
+    head.appendChild(script);
+ }
+
+ reloadFile('data/player');
+ reloadFile('data/bots');
+ reloadFile('data/calls');
+
   setTimeout(() => {
-    start();
-  }, 4000);
+    gameStart();
+  }, 3000);
 
 }
 
-let newGameOrMenuButton = document.getElementById('newGameOrMenuButton');
-newGameOrMenuButton.addEventListener('click', function handleClick() {
-  localStorage.setItem("Night", 1);
-  startNight();
+// GET INPUTS #############################################################
+
+let button1 = document.getElementById('button1');
+button1.addEventListener('click', function handleClick() {
+  
+  if (button1.innerHTML === 'Menu') {
+    location.reload();
+  
+  } else if (button1.innerHTML === 'New Game') {
+    localStorage.setItem("Night", 1);
+    startNight();
+  }
+
 });
 
-let continueButton = document.getElementById('continueButton');
-continueButton.addEventListener('click', function handleClick() {
+let button2 = document.getElementById('button2');
+button2.addEventListener('click', function handleClick() {
   startNight();
 });
 

@@ -42,7 +42,7 @@ canvas {
 }
 
 .button {
-  background-color: #272a2a;
+  background-color: black;
   border: none;
   font-family: 'Courier';
   color: white;
@@ -50,11 +50,6 @@ canvas {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 64px;
+  font-size: 58px;
   margin: 0;
-  position: relative;
-  top: 500px;
-  left: 590px;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }

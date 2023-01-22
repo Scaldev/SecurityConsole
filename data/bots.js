@@ -1,14 +1,14 @@
-let Freddy = {
+var Freddy = {
         initials: "FR",
         name: "Freddy",
         emoji: "🐻",
         level: 0,
         levels: [2, 3, 6, 10, 13, 16],
-        interval: 3.09,
+        interval: 4.51,
         square: "03"
     };
 
-let Bonnie = {
+var Bonnie = {
         initials: "BO",
         name: "Bonnie",
         emoji: "🐰",
@@ -18,36 +18,36 @@ let Bonnie = {
         square: "02"
     };
 
-let Chica = {
+var Chica = {
         initials: "CH",
         name: "Chica",
-        emoji: "🐔",
+        emoji: "🐸",
         level: 0,
         levels: [3, 5, 6, 10, 12, 15],
-        interval: 5.51,
+        interval: 3.81,
         square: "04"
     };
 
-let Foxy = {
+var Foxy = {
         initials: "FO",
         name: "Foxy",
         emoji: "🦊",
         level: 10,
         levels: [0, 2, 6, 12, 15, 16],
-        interval: 2.07,
+        interval: 2.57,
         state: 0,
         goal: "",
         square: "60"
     };
 
-let Mangle = {
+var Mangle = {
         initials: "MA",
         name: "Mangle",
         emoji: "🐺",
         level: 10,
         levels: [0, 0, 3, 7, 11, 14],
-        interval: 4.09,
+        interval: 3.31,
         square: "66"
     };
 
-let Bots = [Freddy, Bonnie, Chica, Foxy, Mangle];
+var Bots = [Freddy, Bonnie, Chica, Foxy, Mangle];
